@@ -15,6 +15,6 @@ Arudino: rc_drive.ino
 
 Raspberry Pi: picamera_stream_client.py
 
-PC: stream_server.py, xbox_drive.py
+PC: picamera_stream_server.py, xbox_drive.py
 
 **Neural Network code is still in progress.
