@@ -94,12 +94,10 @@ class CollectTrainingData(object):
 
 
 if __name__ == '__main__':
-    # host, port
-    h, p = "192.168.0.13", 65432
+    HOST = "192.168.0.13", 
+    PORT = 65432
 
-    # vector size, half of the image
-    s = 384 * 288
+    SIZE = 384 * 288
 
-    ctd = CollectTrainingData(h, p, s)
+    ctd = CollectTrainingData(HOST, PORT, SIZE)
     ctd.collect()
-
