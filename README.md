@@ -17,4 +17,4 @@ Raspberry Pi: stream_client.py
 
 PC: stream_server.py, xbox_drive.py
 
-Neural Network code is still in progress.
+**Neural Network code is still in progress.
