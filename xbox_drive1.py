@@ -20,6 +20,31 @@ deadband = 0.1
 
 x = 0
 
+def parseValue(a0, a2):
+    if a0 < -deadband and a2 > deadband:
+                ser.write('4'.encode()) # left/reverse
+
+    if a0 < -deadband and a2 < -deadband:
+                ser.write('5'.encode()) # left/forward
+
+    if a0 > deadband and a2 > deadband:
+                ser.write('6'.encode()) # right/reverse
+
+    if a0 > deadband and a2 < -deadband:
+                ser.write('7'.encode()) # right/forward
+
+    if a2 < -deadband:
+                ser.write('1'.encode()) # forward
+
+    if a2 > deadband:
+                ser.write('0'.encode()) # reverse
+
+    if a0 < -deadband:
+                ser.write('2'.encode()) # left
+
+    if a0 > deadband:
+                ser.write('3'.encode()) # right
+    
 while done == False:
     
     for event in pygame.event.get():
@@ -30,35 +55,12 @@ while done == False:
             a0 = joystick.get_axis(0)
             a2 = joystick.get_axis(2)
 
-            # this pyserial part requires a program on arduino
-            if a0 < -deadband and a2 > deadband:
-                ser.write('4'.encode()) # left/reverse
-
-            if a0 < -deadband and a2 < -deadband:
-                ser.write('5'.encode()) # left/forward
-
-            if a0 > deadband and a2 > deadband:
-                ser.write('6'.encode()) # right/reverse
-
-            if a0 > deadband and a2 < -deadband:
-                ser.write('7'.encode()) # right/forward
-
-            if a2 < -deadband:
-                ser.write('1'.encode()) # forward
-
-            if a2 > deadband:
-                ser.write('0'.encode()) # reverse
-
-            if a0 < -deadband:
-                ser.write('2'.encode()) # left
-
-            if a0 > deadband:
-                ser.write('3'.encode()) # right
+    parseValue(a0, a2)
     
-            axisStr = "Axis 0 value: {0:7.3f}, Axis 2 value: {1:7.3f}".format(a0, a2)
-            print(axisStr, end = '')
-            print('\b' * len(axisStr), end = '', flush = True)
-            print('event inside happened')
+    axisStr = "Axis 0 value: {0:7.3f}, Axis 2 value: {1:7.3f}".format(a0, a2)
+    print(axisStr, end = '')
+    print('\b' * len(axisStr), end = '', flush = True)
+    print('event inside happened')
     
     clock.tick()
 
