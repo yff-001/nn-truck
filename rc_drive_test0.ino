@@ -1,11 +1,10 @@
-char command; // switch case takes int/char, Serial.read() returns first byte of serial data
 int counter;
-int interval = 4000; // this makes sure main program loops every 4000 microseconds
+int interval = 4000; 
 unsigned long startTime;
 
 void setup() {
   DDRB = DDRB | 0b11111111;  // set all pins on port B as output, using operator 'bitwise or'
-  PORTB = 0b11111111;  // set all pins on port B HIGH
+  PORTB = 0b11111111;        // set all pins on port B HIGH
   
   Serial.begin(9600);
 }
@@ -14,20 +13,20 @@ void loop() {
   startTime = micros();
   
   if (Serial.available() > 0) {
-    command = Serial.read();
+    byte j = Serial.read();
     counter = 0;
-    send_command(command);
+    send_command(j);
   }
 
   if (counter <= 5) {
-    counter ++; // if serial data available, counter is reset, or first block of loop not excuted, counter value is retained 
-  }             // after 5 main loops without serial data, command is reset. number determines how long command remains
+    counter ++;          // if no new command comes in, last command will be reset after 5 cycles
+  }             
   else {
     PORTB = 0b11111111;  //reset all pins to HIGH
   }
   
   while (micros() - startTime < interval) {
-    // this holds main loop until 4000 microseconds passes
+    // this makes sure main program loops every 4000 microseconds
   }
 }
 
