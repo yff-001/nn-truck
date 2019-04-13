@@ -13,7 +13,7 @@ These pieces of code are run on:
 
 Arudino: rc_drive.ino
 
-Raspberry Pi: stream_client.py
+Raspberry Pi: picamera_stream_client.py
 
 PC: stream_server.py, xbox_drive.py
 
