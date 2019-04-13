@@ -10,6 +10,7 @@ A camera module V2 is connected to a Raspberry Pi 3B. Both are mounted on the ve
 A neural network takes the numpy array and forward/reverse/left/right from human driver as inputs, and outputs 3 command. The neural network is trained on PC and inference is alos carried out on PC.
 
 These pieces of code are run on:
+
 Arudino: rc_drive.ino
 
 Raspberry Pi: stream_client.py
