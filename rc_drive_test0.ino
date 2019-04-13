@@ -22,11 +22,11 @@ void loop() {
     counter ++;          // if no new command comes in, last command will be reset after 5 cycles
   }             
   else {
-    PORTB = 0b11111111;  //reset all pins to HIGH
+    PORTB = 0b11111111;  // reset all pins to HIGH
   }
   
   while (micros() - startTime < interval) {
-    // this makes sure main program loops every 4000 microseconds
+                         // this makes sure main program loops every 4000 microseconds
   }
 }
 
