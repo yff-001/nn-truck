@@ -94,7 +94,7 @@ class CollectTrainingData(object):
 
 
 if __name__ == '__main__':
-    HOST = "192.168.0.13", 
+    HOST = "192.168.0.13"
     PORT = 65432
 
     SIZE = 384 * 288
