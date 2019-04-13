@@ -1,6 +1,3 @@
-# !!!IMPORTANT!!! pygame.event doesn't work if a window is not initialized!
-# this is a more refined version than xbox.py
-
 import pygame, serial
 
 ser = serial.Serial('com4', 9600)
@@ -25,9 +22,9 @@ x = 0
 
 while done == False:
     
-    for event in pygame.event.get(): # User did something
-        if event.type == pygame.QUIT: # If user clicked close
-            done=True # Flag that we are done so we exit this loop
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done=True
 
         if event.type == pygame.JOYAXISMOTION:
             a0 = joystick.get_axis(0)
@@ -47,24 +44,22 @@ while done == False:
                 ser.write('7'.encode()) # right/forward
 
             if a2 < -deadband:
-                ser.write('1'.encode()) # this encodes unicode 1 to ascii 1, forward command
+                ser.write('1'.encode()) # forward
 
             if a2 > deadband:
-                ser.write('0'.encode()) # reverse command
+                ser.write('0'.encode()) # reverse
 
             if a0 < -deadband:
-                ser.write('2'.encode()) # left command
+                ser.write('2'.encode()) # left
 
             if a0 > deadband:
-                ser.write('3'.encode()) # right command, this axis can't really return to centre, a large value selected to avoid sending command when in centre
+                ser.write('3'.encode()) # right
     
             axisStr = "Axis 0 value: {0:7.3f}, Axis 2 value: {1:7.3f}".format(a0, a2)
             print(axisStr, end = '')
             print('\b' * len(axisStr), end = '', flush = True)
             print('event inside happened')
     
-    clock.tick(10)
-    print('event happened {}'.format(x))    # these lines are excuted every frame, thus also controlled by clock.tick()    
-    x = x + 1
+    clock.tick()
 
 pygame.quit()
