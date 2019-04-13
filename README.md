@@ -7,7 +7,7 @@ The vehicle is based on a 1/16 scale radio controlled toy truck. Radio link is b
 
 A camera module V2 is connected to a Raspberry Pi 3B. Both are mounted on the vehicle. Raspberry Pi streams captured images to PC over WiFi. Images are parsed by OpenCV and saved as numpy array.
 
-A neural network takes the numpy array and forward/reverse/left/right from human driver as inputs, and outputs 3 command. The neural network is trained on PC and inference is alos carried out on PC.
+A neural network takes the numpy array and forward/reverse/left/right from human driver as inputs, and outputs 3 commands. The neural network is trained on PC and inference is alos carried out on PC.
 
 These pieces of code are run on:
 
