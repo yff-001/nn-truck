@@ -1,12 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-# this is modified code retreived from RC/OpenCV github
-# serial transmissin/pygame keyboard input part were removed
-
 import numpy as np
 import cv2
 
