@@ -1,10 +1,11 @@
 int counter;
-int interval = 4000; 
+int interval = 4000;
 unsigned long startTime;
 
 void setup() {
-  DDRB = DDRB | 0b11111111;  // set all pins on port B as output, using operator 'bitwise or'
-  PORTB = 0b11111111;        // set all pins on port B HIGH
+  GPIOA->regs->CRL = 0x00003333;         // set PA0/PA1/PA2/PA3 as OUTPUT
+
+  GPIOA->regs->ODR = 0b0000000000001111; // set PA0/PA1/PA2/PA3 pin HIGH
   
   Serial.begin(9600);
 }
@@ -13,51 +14,51 @@ void loop() {
   startTime = micros();
   
   if (Serial.available() > 0) {
-    byte j = Serial.read();
+    char j = Serial.read(); // switch case takes int/char, Serial.read() returns first byte of serial data
     counter = 0;
-    send_command(j);
+    drive_command(j);
   }
 
   if (counter <= 5) {
-    counter ++;          // if no new command comes in, last command will be reset after 5 cycles
+    counter ++;             // if no new command is received, command is reset after 5 loops
   }             
   else {
-    PORTB = 0b11111111;  // reset all pins to HIGH
+    GPIOA->regs->ODR = 0b0000000000001111;  //reset all 4 pins to HIGH
   }
   
   while (micros() - startTime < interval) {
-                         // this makes sure main program loops every 4000 microseconds
+    // this makes sure main program loops every 4000 microseconds
   }
 }
 
-void send_command(char i){
+void drive_command(char i){
   switch (i){
      case '1': 
-      PORTB = 0b11111011;  //forward 
+      GPIOA->regs->ODR = 0b0000000000001110;  //forward 
       break;
      case '0': 
-      PORTB = 0b11110111;  //reverse
+      GPIOA->regs->ODR = 0b0000000000001101;  //reverse
       break;
      case '3': 
-      PORTB = 0b11111110;  //right
+      GPIOA->regs->ODR = 0b0000000000001011;  //right
       break;
      case '2': 
-      PORTB = 0b11111101;  //left
+      GPIOA->regs->ODR = 0b0000000000000111;  //left
       break;
      case '7': 
-      PORTB = 0b11111010;  //forward_right
+      GPIOA->regs->ODR = 0b0000000000001010;  //forward_right
       break;
      case '5': 
-      PORTB = 0b11111001;  //forward_left
+      GPIOA->regs->ODR = 0b0000000000000110;  //forward_left
       break;
      case '6': 
-      PORTB = 0b11110110;  //reverse_right
+      GPIOA->regs->ODR = 0b0000000000001001;  //reverse_right
       break;
      case '4': 
-      PORTB = 0b11110101;  //reverse_left
+      GPIOA->regs->ODR = 0b0000000000000101;  //reverse_left
       break;
      default:
-      PORTB = 0b11111111;  //reset
+      GPIOA->regs->ODR = 0b0000000000001111;  //reset
       break;
     }
 }
