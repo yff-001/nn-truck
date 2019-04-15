@@ -7,7 +7,7 @@ The vehicle is based on a 1/16 scale radio controlled toy truck. Radio link is b
 
 <p align="center">
   <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2181.JPG" width="1000" title="RC Truck Tx">
-  <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2213.JPG" width="1000" alt="STM32 Connected to PC via FTDI">
+  <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2213.JPG" width="1000" title="STM32 Connected to PC via FTDI">
 </p>
 
 A camera module V2 is connected to a Raspberry Pi 3B. Both are mounted on the vehicle. Raspberry Pi streams captured images to PC over WiFi. Images are parsed by OpenCV and saved as numpy array.
