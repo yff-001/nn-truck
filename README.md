@@ -1,5 +1,4 @@
-# nn-truck
-Neural Network Driven RC Truck
+# Neural Network Driven RC Truck
 
 This project was inspired by many similar projects published on internet, especially <a href = 'https://github.com/hamuchiwa/AutoRCCar'>this one</a>.
 
