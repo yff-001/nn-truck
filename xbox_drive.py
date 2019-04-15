@@ -28,7 +28,7 @@ def parseValue(A0, A2):
         elif A0 > deadband:
             ser.write('7'.encode()) # right/forward
         else:
-             ser.write('1'.encode()) # forward
+            ser.write('1'.encode()) # forward
 
     if A2 > deadband:
         if A0 < -deadband:
@@ -36,7 +36,7 @@ def parseValue(A0, A2):
         elif A0 > deadband:
             ser.write('6'.encode()) # right/reverse
         else:
-             ser.write('0'.encode()) # reverse
+            ser.write('0'.encode()) # reverse
 
     if A0 < -deadband:
         if A2 < -deadband:
