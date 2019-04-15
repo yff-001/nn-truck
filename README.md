@@ -3,7 +3,13 @@ Neural Network Driven RC Truck
 
 This project was inspired by many similar projects published on internet, especially <a href = 'https://github.com/hamuchiwa/AutoRCCar'>this one</a>.
 
-The vehicle is based on a 1/16 scale radio controlled toy truck. Radio link is based on 2.4GHz channel. 4 switches on radio controller which control forward/reverse and left/right are directly tapped and connected to a STM32 development board which is in turn connected to a PC via serial link. A switch is closed when a digital pin on the STM32 is pulled down, thus sending a command to the vehicle. A Xbox controller connected to PC is used to drive the truck.
+The vehicle is based on a 1/16 scale radio controlled toy truck. 
+
+<p align="center">
+  <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2239.JPG" width="1000" title="1/16 RC Truck">
+</p>
+
+Radio link is based on 2.4GHz channel. 4 switches on radio controller which control forward/reverse and left/right are directly tapped and connected to a STM32 development board which is in turn connected to a PC via serial link. A switch is closed when a digital pin on the STM32 is pulled down, thus sending a command to the vehicle. A Xbox controller connected to PC is used to drive the truck.
 
 <p align="center">
   <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2181.JPG" width="1000" title="RC Truck Tx">
