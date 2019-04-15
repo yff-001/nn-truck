@@ -14,7 +14,7 @@ Radio link is based on a 2.4GHz encoder/decoder module. 4 switches on encoder si
   <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2181.JPG" width="1000" title="RC Truck Tx">
 </p>
 
-A switch is closed when a connected pin on STM32 is pulled down, thus sending a command to the vehicle. A Xbox controller connected to PC is used to drive the truck.
+A switch is closed when a connected pin on STM32 is pulled down, thus sending a command to the vehicle. A Xbox controller connected to PC is used to drive the truck. Control inputs are parsed by pygame.
 
 <p align="center">
   <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2213.jpg" width="1000" title="STM32 Connected to PC via FTDI">
