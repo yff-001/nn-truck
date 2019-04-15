@@ -3,11 +3,11 @@ Neural Network Driven RC Truck
 
 This project was inspired by many similar projects published on internet, especially <a href = 'https://github.com/hamuchiwa/AutoRCCar'>this one</a>.
 
-The vehicle is based on a 1/16 scale radio controlled toy truck. Radio link is based on 2.4GHz channel. 4 switches on radio controller which control forward/reverse and left/right are directly tapped and connected to an Arduino nano. Arduino nano are in turn connected to a PC via serial link. A switch is closed when a digital pin on the Arduino is pulled down, thus sending a command to the vehicle. A Xbox controller connected to PC is used to drive the truck.
+The vehicle is based on a 1/16 scale radio controlled toy truck. Radio link is based on 2.4GHz channel. 4 switches on radio controller which control forward/reverse and left/right are directly tapped and connected to a STM32 development board which is in turn connected to a PC via serial link. A switch is closed when a digital pin on the STM32 is pulled down, thus sending a command to the vehicle. A Xbox controller connected to PC is used to drive the truck.
 
 <p align="center">
-  <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2181.JPG" width="1000" title="hover text">
-  <img src="your_relative_path_here_number_2_large_name" width="350" alt="accessibility text">
+  <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2181.JPG" width="1000" title="RC Truck Tx">
+  <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2213.JPG" width="1000" alt="STM32 Connected to PC via FTDI">
 </p>
 
 A camera module V2 is connected to a Raspberry Pi 3B. Both are mounted on the vehicle. Raspberry Pi streams captured images to PC over WiFi. Images are parsed by OpenCV and saved as numpy array.
