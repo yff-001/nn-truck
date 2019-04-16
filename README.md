@@ -26,7 +26,7 @@ A neural network takes the numpy array and forward/reverse/left/right from human
 
 These pieces of code are run on:
 
-Arudino: rc_drive.ino
+STM32: rc_drive.ino
 
 Raspberry Pi: picamera_stream_client.py
 
