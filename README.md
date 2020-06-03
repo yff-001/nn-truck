@@ -1,4 +1,4 @@
-# Neural Network Driven RC Truck
+# Neural Network Driven Model Truck
 
 This project was inspired by many similar projects published on internet, especially <a href = 'https://github.com/hamuchiwa/AutoRCCar'>this one</a>.
 
@@ -8,7 +8,7 @@ The vehicle is based on a 1/16 scale radio controlled toy truck.
   <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2239.JPG" width="1000" title="1/16 RC Truck">
 </p>
 
-Radio control is implemented with a 2.4GHz encoder/decoder module. 4 switches on encoder side which control forward/reverse and left/right are directly tapped and connected to a STM32 development board which is in turn connected to a PC via serial link. STM32 was selected to be compatible with 3.3V logic level on encoder module.
+Radio control is implemented with a 2.4GHz encoder/decoder module. 4 switches on encoder side which control forward/reverse and left/right are directly tapped and connected to a STM32 development board which is in turn connected to a PC via a USB/serial. STM32 was selected to be compatible with 3.3V logic level on encoder module.
 
 <p align="center">
   <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2181.JPG" width="1000" title="RC Truck Tx">
