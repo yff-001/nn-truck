@@ -1,64 +1,67 @@
-int counter;
-int interval = 4000;
-unsigned long startTime;
+/* this code is intended for Pro Mini 3.3v 8Mhz */
+
+uint16_t counter = 0;
+uint16_t interval = 4000;
+uint32_t t = 0;
+uint32_t t_s = 0;
 
 void setup() {
-  GPIOA->regs->CRL = 0x00003333;         // set PA0/PA1/PA2/PA3 as OUTPUT
-
-  GPIOA->regs->ODR = 0b0000000000001111; // set PA0/PA1/PA2/PA3 pin HIGH
+  DDRB = DDRB | 0b11111111;   // set PB7~0 as output
+  PORTB = 0b11011111;         // set PB7~0 HIGH, except PB5/D13/LED
   
   Serial.begin(9600);
 }
 
 void loop() {
-  startTime = micros();
+  t = micros();
   
-  if (Serial.available() > 0) {
-    char j = Serial.read(); // switch case takes int/char, Serial.read() returns first byte of serial data
-    counter = 0;
-    drive_command(j);
-  }
+  if (t - t_s >= interval) {
+    if (Serial.available() > 0) {
+      uint8_t command = Serial.read();
+      counter = 0;
+      send_command(command);
+    }
 
-  if (counter <= 5) {
-    counter ++;             // if no new command is received, command is reset after 5 loops
-  }             
-  else {
-    GPIOA->regs->ODR = 0b0000000000001111;  //reset all 4 pins to HIGH
-  }
-  
-  while (micros() - startTime < interval) {
-    // this makes sure main program loops every 4000 microseconds
+    if (counter <= 5) {
+      counter ++;               // increment counter if there's no serial data
+    }                          
+    else {
+      PORTB = 0b11011111;       // reset all pins to HIGH after 5 loops
+    }
+    
+    t_s = t;                    // update t_s
   }
 }
 
-void drive_command(char i){
-  switch (i){
+void send_command(uint8_t x) {
+  /* PB5 is set HIGH in call cases except default, thus giving visual indication when there's data coming */
+  switch (x) {
      case '1': 
-      GPIOA->regs->ODR = 0b0000000000001110;  //forward 
+      PORTB = 0b11111011;  //forward 
       break;
      case '0': 
-      GPIOA->regs->ODR = 0b0000000000001101;  //reverse
+      PORTB = 0b11110111;  //reverse
       break;
      case '3': 
-      GPIOA->regs->ODR = 0b0000000000001011;  //right
+      PORTB = 0b11111110;  //right
       break;
      case '2': 
-      GPIOA->regs->ODR = 0b0000000000000111;  //left
+      PORTB = 0b11111101;  //left
       break;
      case '7': 
-      GPIOA->regs->ODR = 0b0000000000001010;  //forward_right
+      PORTB = 0b11111010;  //forward_right
       break;
      case '5': 
-      GPIOA->regs->ODR = 0b0000000000000110;  //forward_left
+      PORTB = 0b11111001;  //forward_left
       break;
      case '6': 
-      GPIOA->regs->ODR = 0b0000000000001001;  //reverse_right
+      PORTB = 0b11110110;  //reverse_right
       break;
      case '4': 
-      GPIOA->regs->ODR = 0b0000000000000101;  //reverse_left
+      PORTB = 0b11110101;  //reverse_left
       break;
      default:
-      GPIOA->regs->ODR = 0b0000000000001111;  //reset
+      PORTB = 0b11011111;  //reset
       break;
     }
 }
