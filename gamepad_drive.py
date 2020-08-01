@@ -3,8 +3,6 @@ import pygame, serial
 ser = serial.Serial('com7', 115200)
 
 pygame.init()
-
-# !!!IMPORTANT!!! pygame.event doesn't work if a window is not initialized!
 size = [250, 250]
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Xbox Controller")
@@ -15,7 +13,7 @@ joystick.init()
 
 clock = pygame.time.Clock()
 
-done = False
+flag = False
 
 deadband = 0.1
 
@@ -54,12 +52,10 @@ def parseValue(A0, A2):
         else:
             ser.write('3'.encode()) # right
 
-while done == False:
-
-    # !!!IMPORTANT!!! pygame.event doesn't work if a window is not initialized!
+while flag == False:
     for event in pygame.event.get():    # all events will be iterated
         if event.type == pygame.QUIT:   # if event is a 'quit'
-            done = True # set flag, exit on next loop
+            flag = True                 # set flag, exit on next loop
 
         if event.type == pygame.JOYAXISMOTION:  # if event is from joystick
             a0 = joystick.get_axis(0)   # left/right
@@ -71,6 +67,6 @@ while done == False:
     print(axisStr, end = '')
     print('\b' * len(axisStr), end = '', flush = True)
 
-    clock.tick(200) # motor control becomes responsive if this function is called
+    clock.tick(200)                     # 
 
 pygame.quit()
