@@ -1,4 +1,4 @@
-/* this code is intended for Pro Mini 3.3v 8Mhz */
+/* this code is intended for atmega328 running at 3.3v 8Mhz */
 
 uint16_t counter = 0;
 uint16_t interval = 4000;
