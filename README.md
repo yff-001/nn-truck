@@ -2,19 +2,19 @@
 
 This project was inspired by many similar projects published on internet, especially <a href = 'https://github.com/hamuchiwa/AutoRCCar'>this one</a>.
 
-The vehicle is based on a 1/16 scale radio controlled toy truck. 
+The vehicle is built based on a 1/16 scale radio controlled toy truck. 
 
 <p align="center">
   <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2239.JPG" width="1000" title="1/16 RC Truck">
 </p>
 
-Radio control is implemented with a 2.4GHz encoder/decoder module. 4 switches on encoder side which control forward/reverse and left/right are directly tapped and connected to a STM32 development board which is in turn connected to a PC via a USB/serial. STM32 was selected to be compatible with 3.3V logic level on encoder module.
+This truck came with a 2.4GHz encoder/decoder module. There are 4 switches on encoder side which control forward/reverse and left/right. When a switch is pulled down, there's a corresponding pin on decoder side also pulled down. 4 wires are soldered to the switches and connect them to A4:0 pins on a STM32 development board. The STM32 communicates with PC through a serial link. STM32 was selected because it's 3.3V logic level is compatible with logic levels that are on the encoder module.
 
 <p align="center">
   <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2181.JPG" width="1000" title="RC Truck Tx">
 </p>
 
-A switch is closed when a connected pin on STM32 is pulled down, thus sending a command to the vehicle. A Xbox controller connected to PC is used to drive the truck. Control inputs are parsed by pygame.
+A switch is closed when a connected pin on STM32 is pulled down, thus sending a command to the vehicle. A Xbox controller connected to PC is used to manually drive the truck. Control inputs are passed to a Python script using pyserial and pygame.
 
 <p align="center">
   <img src="https://github.com/yff-001/nn-truck/blob/master/IMG_2213.jpg" width="1000" title="STM32 Connected to PC via FTDI">
