@@ -1,10 +1,8 @@
 /* declare global & volatile variables */
 volatile bool flagA = false;
 
-uint16_t counter = 0;
-
 void setup() {
-  DDRB = DDRB|0b11111111;               // set PB7~0 as output
+  DDRB |= 0b11111111;                   // set PB7~0 as output
   PORTB = 0b11011111;                   // set PB7~0 HIGH, except PB5/D13/LED
   
   init_timer0();
@@ -12,16 +10,17 @@ void setup() {
 }
 
 void loop() {
+  static uint16_t counter = 0;
 
   if (flagA) {
     if (Serial.available()) {
       uint8_t command = Serial.read();
-      send_command(command);
+      drive_command(command);
 
-      counter = 0;
+      counter = 0;                      // start/reset counter
     }
 
-    if (counter <= 5) {
+    if (counter < 5) {
       counter ++;                       // increment counter if there's no serial data
     }                          
     else {
@@ -42,13 +41,13 @@ void init_timer0() {
 
     TCCR0A |= (1<<WGM01);               // turn on ctc mode
     TCCR0B |= (1<<CS02);                // clk/256
-    OCR0A = 124;                        // count up to 125, yield p = 0.004s (clk=8000000)
+    OCR0A = 124;                        // count up to 124, yield p = 0.004s (clk=8000000)
 
     TIMSK0 |= (1<<OCIE0A);              // turn on output compare A match
     sei();
 }
 
-void send_command(uint8_t x) {
+void drive_command(uint8_t x) {
   switch (x) {
      case '1': 
       PORTB = 0b11111011;               //forward 

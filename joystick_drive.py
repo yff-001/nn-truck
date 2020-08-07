@@ -66,12 +66,8 @@ def main():
                     a2 = joystick.get_axis(2)           # forward/reverse  
             
             parseValue(a0, a2)                          # call function to parse axis values
-            
-            axisStr = "Axis 0 value: {0:7.3f}, Axis 2 value: {1:7.3f}".format(a0, a2)
-            print(axisStr, end = '')
-            print('\b' * len(axisStr), end = '', flush = True)
 
-            clock.tick(200)                             # motor control becomes responsive at 200 fps
+            clock.tick(100)                             # motor control becomes responsive at 200 fps
     except:
         ser.close()
         pygame.quit()
