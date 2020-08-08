@@ -10,8 +10,8 @@ void setup() {
 }
 
 void loop() {
-  static uint16_t counter = 0;
-
+  static uint16_t counter = 0;          // static variables are initialized only once,
+                                        // and retain values between function calls
   if (flagA) {
     if (Serial.available()) {
       uint8_t command = Serial.read();
@@ -24,7 +24,7 @@ void loop() {
       counter ++;                       // increment counter if there's no serial data
     }                          
     else {
-      PORTB = 0b11011111;               // reset all pins to HIGH after 5 * 4000ms
+      PORTB = 0b11011111;               // reset all pins to HIGH after 5 * 0.004s
     }
   }
 }
