@@ -1,4 +1,4 @@
-# Neural Network Driven Model Truck
+# Neural Network Drives a Model Truck
 
 This project was inspired by many similar projects published on internet, especially <a href = 'https://github.com/hamuchiwa/AutoRCCar'>this one</a>.
 
